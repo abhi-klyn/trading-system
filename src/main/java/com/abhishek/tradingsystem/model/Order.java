@@ -22,6 +22,7 @@ public class Order {
 
     public Order(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
                  @NonNull Operation operation, OrderType orderType) {
+        // todo: Id generation service might be needed to avoid collisions.
         this.orderId = RandomStringUtils.randomAlphanumeric(17).toUpperCase();
         this.price = price;
         this.symbol = symbol;
