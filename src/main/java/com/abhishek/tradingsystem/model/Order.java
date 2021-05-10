@@ -1,10 +1,9 @@
 package com.abhishek.tradingsystem.model;
 
+import com.abhishek.tradingsystem.model.enums.Operation;
+import com.abhishek.tradingsystem.model.enums.OrderType;
 import com.abhishek.tradingsystem.model.enums.Symbol;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,5 +17,6 @@ public class Order {
     @Setter private Symbol symbol;
     @Setter private int quantity;
     @Setter private LocalDateTime datetime;
+    @NonNull private Operation operation;
 
 }
