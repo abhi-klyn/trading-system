@@ -1,14 +1,21 @@
 package com.abhishek.tradingsystem.model;
 
 import com.abhishek.tradingsystem.model.enums.Operation;
+import com.abhishek.tradingsystem.model.enums.OrderType;
+import com.abhishek.tradingsystem.model.enums.Symbol;
 import com.abhishek.tradingsystem.model.order.operations.BaseOrderOperation;
 import com.abhishek.tradingsystem.model.order.operations.BuyOrders;
 import com.abhishek.tradingsystem.model.order.operations.SellOrders;
 import com.abhishek.tradingsystem.model.ordering.stratergy.DescPriceIncTime;
 import com.abhishek.tradingsystem.model.ordering.stratergy.IncPriceIncTime;
+import lombok.NonNull;
 
-import javax.swing.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -28,6 +35,11 @@ public class TradingService {
         return operations.get(order.getOperation()).addOrder(order);
     }
 
+    public boolean addOrder(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+                            @NonNull Operation operation, OrderType orderType) {
+        return addOrder(new Order(price, symbol, quantity, datetime, operation, orderType));
+    }
+
     public boolean removeOrder(final Order order) {
         orderData.remove(order.getOrderId());
         return operations.get(order.getOperation()).removeOrder(order);
@@ -37,7 +49,7 @@ public class TradingService {
         return orderData.get(orderId);
     }
 
-    public List<String> listOrders(Operation operation){
+    public List<String> listOrders(Operation operation) {
         Iterator<Order> orderIterator = operations.get(operation).listOrders();
         Iterable<Order> iterableOrder = () -> orderIterator;
         return StreamSupport.stream(iterableOrder.spliterator(), false)
