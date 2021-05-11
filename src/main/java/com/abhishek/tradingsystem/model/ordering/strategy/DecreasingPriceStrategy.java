@@ -12,7 +12,7 @@ import java.util.Map;
  * Market orders have the best price, hence are designed to be ahead in the list.
  * Followed by ordering based on price and time.
  * <p>
- * Note that the price is comparison uses reverseOrder().
+ * Note that the price comparison uses reverseOrder().
  */
 public class DecreasingPriceStrategy implements BaseOrderingStrategy {
     private final static Map<OrderType, Integer> priority = Collections.singletonMap(OrderType.MARKET, 1);
@@ -26,6 +26,9 @@ public class DecreasingPriceStrategy implements BaseOrderingStrategy {
                 .thenComparing(Order::getOrderId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Comparator<Order> getComparator() {
         return orderComparator;

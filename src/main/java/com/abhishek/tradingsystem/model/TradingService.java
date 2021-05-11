@@ -100,7 +100,7 @@ public class TradingService {
     }
 
     /**
-     * Given the existing orderId any of the other params can be updated, the update is propagated through operations data.
+     * Given the existing orderId. params can be updated, the update is propagated through operations data.
      *
      * @param orderId
      * @param price

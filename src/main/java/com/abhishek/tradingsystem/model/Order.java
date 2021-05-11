@@ -3,22 +3,35 @@ package com.abhishek.tradingsystem.model;
 import com.abhishek.tradingsystem.model.enums.Operation;
 import com.abhishek.tradingsystem.model.enums.OrderType;
 import com.abhishek.tradingsystem.model.enums.Symbol;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * POJO object for order
+ */
 @ToString
 @Getter
 public class Order {
-    @NonNull private String orderId;
-    @Setter private BigDecimal price;
-    @Setter private Symbol symbol;
-    @Setter private int quantity;
-    @Setter private LocalDateTime datetime;
-    @Setter private OrderType orderType;
-    @NonNull private final Operation operation;
+    @NonNull
+    private final Operation operation;
+    @NonNull
+    private String orderId;
+    @Setter
+    private BigDecimal price;
+    @Setter
+    private Symbol symbol;
+    @Setter
+    private int quantity;
+    @Setter
+    private LocalDateTime datetime;
+    @Setter
+    private OrderType orderType;
 
     public Order(@NonNull BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
                  @NonNull Operation operation, OrderType orderType) {
