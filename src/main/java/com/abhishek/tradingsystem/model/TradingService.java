@@ -6,8 +6,8 @@ import com.abhishek.tradingsystem.model.enums.Symbol;
 import com.abhishek.tradingsystem.model.order.operations.BaseOrderOperation;
 import com.abhishek.tradingsystem.model.order.operations.BuyOrders;
 import com.abhishek.tradingsystem.model.order.operations.SellOrders;
-import com.abhishek.tradingsystem.model.ordering.stratergy.DecreasingPriceComparator;
-import com.abhishek.tradingsystem.model.ordering.stratergy.IncreasingPriceComparator;
+import com.abhishek.tradingsystem.model.ordering.stratergy.DecreasingPriceStrategy;
+import com.abhishek.tradingsystem.model.ordering.stratergy.IncreasingPriceStrategy;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
@@ -26,8 +26,8 @@ public class TradingService {
     public TradingService() {
         operations = new HashMap<>();
         orderData = new HashMap<>();
-        operations.put(BuyOrders.OPERATION_TYPE, new BuyOrders(new DecreasingPriceComparator()));
-        operations.put(SellOrders.OPERATION_TYPE, new SellOrders(new IncreasingPriceComparator()));
+        operations.put(BuyOrders.OPERATION_TYPE, new BuyOrders(new DecreasingPriceStrategy()));
+        operations.put(SellOrders.OPERATION_TYPE, new SellOrders(new IncreasingPriceStrategy()));
     }
 
     public String addOrder(final Order order) {

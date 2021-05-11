@@ -7,15 +7,16 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DecreasingPriceComparator extends OrderingStratergy {
+public class IncreasingPriceStrategy extends BaseOrderingStrategy {
     private final static Map<OrderType, Integer> priority = new HashMap<>();
 
-    public DecreasingPriceComparator() {
+    public IncreasingPriceStrategy() {
         priority.put(OrderType.MARKET, 1);
         orderComparator = Comparator.comparing(Order::getOrderType,
                 Comparator.comparing(t -> priority.getOrDefault(t, 0)))
-                .thenComparing(Order::getPrice, Comparator.reverseOrder())
+                .thenComparing(Order::getPrice)
                 .thenComparing(Order::getDatetime)
                 .thenComparing(Order::getOrderId);
     }
+
 }

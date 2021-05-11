@@ -1,17 +1,17 @@
 package com.abhishek.tradingsystem.model.order.operations;
 
 import com.abhishek.tradingsystem.model.Order;
-import com.abhishek.tradingsystem.model.ordering.stratergy.OrderingStratergy;
+import com.abhishek.tradingsystem.model.ordering.stratergy.BaseOrderingStrategy;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 public abstract class BaseOrderOperation {
-    protected OrderingStratergy orderingStratergy;
+    protected BaseOrderingStrategy baseOrderingStrategy;
     protected Collection<Order> data;
 
-    public BaseOrderOperation(final OrderingStratergy orderingStratergy) {
-        this.orderingStratergy = orderingStratergy;
+    public BaseOrderOperation(final BaseOrderingStrategy baseOrderingStrategy) {
+        this.baseOrderingStrategy = baseOrderingStrategy;
     }
 
     public boolean addOrder(final Order order) {
