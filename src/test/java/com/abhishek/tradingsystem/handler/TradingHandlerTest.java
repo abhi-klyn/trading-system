@@ -2,8 +2,6 @@ package com.abhishek.tradingsystem.handler;
 
 import com.abhishek.tradingsystem.model.Order;
 import com.abhishek.tradingsystem.model.enums.Operation;
-import com.abhishek.tradingsystem.model.enums.OrderType;
-import com.abhishek.tradingsystem.model.enums.Symbol;
 import com.abhishek.tradingsystem.model.ordering.strategy.IncreasingPriceStrategy;
 import com.abhishek.tradingsystem.utils.Utils;
 import org.junit.jupiter.api.AfterEach;
@@ -11,14 +9,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Main test class to test functionality of the system
+ */
 public class TradingHandlerTest {
 
     @BeforeEach
@@ -26,6 +25,9 @@ public class TradingHandlerTest {
 
     }
 
+    /**
+     * lists all the orders in the system and removes them linearly.
+     */
     @AfterEach
     public void cleanUp() {
         List<Order> orderList = TradingHandler.listOrders(Operation.BUY);
@@ -35,12 +37,20 @@ public class TradingHandlerTest {
         }
     }
 
+    /**
+     * Tests Add order, checks if the orderId is returned.
+     */
     @Test
     public void testAddOrder() {
         String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
         Assertions.assertNotNull(orderId);
     }
 
+    /**
+     * Tests remove order method, adds a random order,
+     * Verifies if the order is added, then removes it.
+     * Lists all the orders in the System, checks if the removed order is in the list.
+     */
     @Test
     public void testRemoveOrder() {
         String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
@@ -52,6 +62,11 @@ public class TradingHandlerTest {
         }
     }
 
+    /**
+     * Test /list/orders.
+     * Adds random number of orders (between 5-50), and verifies them if they are in the correct order mentioned by the
+     * Comparator {@link IncreasingPriceStrategy}
+     */
     @Test
     public void testListOrders() {
         addRandomSellOrders();
@@ -67,12 +82,19 @@ public class TradingHandlerTest {
         }
     }
 
+    /**
+     * Checks Access orders.
+     * Adds a random order, and attempts to retrieve it from the systm.
+     */
     @Test
     public void testAccessOrder() {
         String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
         Assertions.assertNotNull(TradingHandler.accessOrder(orderId));
     }
 
+    /**
+     * Utility function to add random orders into the database, adds betwene 5- 50 orders.
+     */
     private void addRandomSellOrders() {
         Random random = new Random();
         int numberOfOrders = random.nextInt(45) + 5; // random number of orders between 5- 50
