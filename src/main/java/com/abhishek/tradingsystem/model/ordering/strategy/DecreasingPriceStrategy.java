@@ -14,8 +14,9 @@ import java.util.Map;
  * <p>
  * Note that the price is comparison uses reverseOrder().
  */
-public class DecreasingPriceStrategy extends BaseOrderingStrategy {
+public class DecreasingPriceStrategy implements BaseOrderingStrategy {
     private final static Map<OrderType, Integer> priority = Collections.singletonMap(OrderType.MARKET, 1);
+    Comparator<Order> orderComparator;
 
     public DecreasingPriceStrategy() {
         orderComparator = Comparator.comparing(Order::getOrderType,
@@ -23,5 +24,10 @@ public class DecreasingPriceStrategy extends BaseOrderingStrategy {
                 .thenComparing(Order::getPrice, Comparator.reverseOrder())
                 .thenComparing(Order::getDatetime)
                 .thenComparing(Order::getOrderId);
+    }
+
+    @Override
+    public Comparator<Order> getComparator() {
+        return orderComparator;
     }
 }
