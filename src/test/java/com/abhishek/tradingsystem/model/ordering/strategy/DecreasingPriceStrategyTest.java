@@ -64,8 +64,6 @@ public class DecreasingPriceStrategyTest {
      * Two orders are created, one of them today other one, yesterday.
      * test asserts if the comparator compares the orders correctly.
      */
-
-}
     @Test
     public void testSamePriceDifferentTime() {
         Random random = new Random();
@@ -77,3 +75,4 @@ public class DecreasingPriceStrategyTest {
         int compareResult = orderComparator.compare(todayOrder, yesterdayOrder);
         Assertions.assertEquals(1, compareResult);
     }
+}
