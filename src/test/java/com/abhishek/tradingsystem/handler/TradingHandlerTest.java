@@ -4,11 +4,9 @@ import com.abhishek.tradingsystem.model.Order;
 import com.abhishek.tradingsystem.model.enums.Operation;
 import com.abhishek.tradingsystem.model.enums.OrderType;
 import com.abhishek.tradingsystem.model.enums.Symbol;
-import com.abhishek.tradingsystem.model.order.operations.BaseOrderOperation;
-import com.abhishek.tradingsystem.model.order.operations.SellOrders;
-import com.abhishek.tradingsystem.model.ordering.strategy.DecreasingPriceStrategy;
 import com.abhishek.tradingsystem.model.ordering.strategy.IncreasingPriceStrategy;
 import com.abhishek.tradingsystem.utils.Utils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +24,15 @@ public class TradingHandlerTest {
     @BeforeEach
     public void setUp() {
 
+    }
+
+    @AfterEach
+    public void cleanUp() {
+        List<Order> orderList = TradingHandler.listOrders(Operation.BUY);
+        orderList.addAll(TradingHandler.listOrders(Operation.SELL));
+        for (Order order : orderList) {
+            TradingHandler.removeOrder(order.getOrderId());
+        }
     }
 
     @Test
@@ -56,7 +63,7 @@ public class TradingHandlerTest {
         Assertions.assertNotNull(orderId);
         TradingHandler.removeOrder(orderId);
         List<Order> orderList = TradingHandler.listOrders(Operation.BUY);
-        for(Order order: orderList) {
+        for (Order order : orderList) {
             Assertions.assertNotEquals(orderId, order.getOrderId());
         }
     }
@@ -68,18 +75,24 @@ public class TradingHandlerTest {
         Assertions.assertNotNull(orderList);
         Comparator<Order> orderComparator = (new IncreasingPriceStrategy()).getComparator();
         Order prev = null;
-        for(Order current : orderList) {
-            if(prev != null && orderComparator.compare(prev, current) > 0) {
+        for (Order current : orderList) {
+            if (prev != null && orderComparator.compare(prev, current) > 0) {
                 fail("Ordering is not correct");
             }
             prev = current;
         }
     }
 
+    @Test
+    public void testAccessOrder() {
+        String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
+        Assertions.assertNotNull(TradingHandler.accessOrder(orderId));
+    }
+
     private void addRandomSellOrders() {
         Random random = new Random();
         int numberOfOrders = random.nextInt(45) + 5; // random number of orders between 5- 50
-        for(int i = 0; i < numberOfOrders; i++) {
+        for (int i = 0; i < numberOfOrders; i++) {
             TradingHandler.addOrder(Utils.generateRandomOrder(null, null, null, Operation.SELL, null));
         }
     }
