@@ -8,13 +8,11 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public abstract class BaseOrderOperation {
-    protected TradingService tradingService;
     protected OrderingStratergy orderingStratergy;
     protected Collection<Order> data;
 
-    public BaseOrderOperation(final TradingService tradingService, OrderingStratergy orderingStratergy) {
+    public BaseOrderOperation(final OrderingStratergy orderingStratergy) {
         this.orderingStratergy = orderingStratergy;
-        this.tradingService = tradingService;
     }
 
     public boolean addOrder(final Order order) {

@@ -9,8 +9,8 @@ import java.util.TreeSet;
 public class SellOrders extends BaseOrderOperation {
     public static Operation OPERATION_TYPE = Operation.SELL;
 
-    public SellOrders(TradingService tradingService, OrderingStratergy orderingStratergy) {
-        super(tradingService, orderingStratergy);
+    public SellOrders(OrderingStratergy orderingStratergy) {
+        super(orderingStratergy);
         this.data = new TreeSet<>(orderingStratergy);
     }
 }

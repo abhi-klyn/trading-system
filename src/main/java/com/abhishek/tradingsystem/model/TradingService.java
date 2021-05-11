@@ -26,8 +26,8 @@ public class TradingService {
     public TradingService() {
         operations = new HashMap<>();
         orderData = new HashMap<>();
-        operations.put(BuyOrders.OPERATION_TYPE, new BuyOrders(this, new DescPriceIncTime()));
-        operations.put(SellOrders.OPERATION_TYPE, new SellOrders(this, new IncPriceIncTime()));
+        operations.put(BuyOrders.OPERATION_TYPE, new BuyOrders(new DescPriceIncTime()));
+        operations.put(SellOrders.OPERATION_TYPE, new SellOrders(new IncPriceIncTime()));
     }
 
     public boolean addOrder(final Order order) {
