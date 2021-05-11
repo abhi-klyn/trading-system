@@ -23,6 +23,11 @@ public class TradingHandler {
         return tradingService.removeOrder(orderId);
     }
 
+    public static boolean updateOrder(String orderId, BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+                                  Operation operation, OrderType orderType)  {
+        return tradingService.updateOrder(orderId, price, symbol, quantity, datetime, operation, orderType);
+    }
+
     public static Order accessOrder(final String orderId) {
         return tradingService.accessOrder(orderId);
     }

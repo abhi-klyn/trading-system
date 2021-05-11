@@ -27,6 +27,8 @@ public abstract class BaseOrderOperation {
         return false;
     }
 
+    public abstract boolean updateOrder(final Order oldOrder, final Order newOrder);
+
     public Iterator<Order> listOrders() {
         return data.iterator();
     }

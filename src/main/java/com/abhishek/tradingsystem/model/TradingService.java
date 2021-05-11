@@ -55,6 +55,14 @@ public class TradingService {
         return orderData.get(orderId);
     }
 
+    public boolean updateOrder(final String orderId, BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+                              @NonNull Operation operation, OrderType orderType) {
+        Order oldOrder = orderData.get(orderId);
+        Order newOrder = new Order(orderId, price, symbol, quantity, datetime, operation, orderType);
+        orderData.put(newOrder.getOrderId(), newOrder);
+        return operations.get(newOrder.getOperation()).updateOrder(oldOrder, newOrder);
+    }
+
     public List<Order> listOrders(Operation operation) {
         Iterator<Order> orderIterator = operations.get(operation).listOrders();
         Iterable<Order> iterableOrder = () -> orderIterator;

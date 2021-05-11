@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @Getter
 public class Order {
-    @NonNull private final String orderId;
+    @NonNull private String orderId;
     @Setter private BigDecimal price;
     @Setter private Symbol symbol;
     @Setter private int quantity;
@@ -30,5 +30,11 @@ public class Order {
         this.datetime = datetime;
         this.orderType = orderType;
         this.operation = operation;
+    }
+
+    public Order(@NonNull String orderId, @NonNull BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+                 @NonNull Operation operation, OrderType orderType) {
+        this(price, symbol, quantity, datetime, operation, orderType);
+        this.orderId = orderId;
     }
 }

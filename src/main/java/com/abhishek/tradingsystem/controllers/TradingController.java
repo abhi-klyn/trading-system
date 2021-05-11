@@ -35,6 +35,18 @@ public class TradingController {
         return ResponseEntity.ok("");
     }
 
+    @RequestMapping(value = "/order/update", method = RequestMethod.POST)
+    public ResponseEntity updateOrder(@NonNull final String orderId,
+                                      final BigDecimal price,
+                                      final Symbol symbol,
+                                      final int quantity,
+                                      final LocalDateTime datetime,
+                                      final Operation operation,
+                                      final OrderType orderType) {
+        TradingHandler.updateOrder(orderId, price, symbol, quantity, datetime, operation, orderType);
+        return ResponseEntity.ok("");
+    }
+
     @RequestMapping(value = "/order/accessOrder", method = RequestMethod.GET)
     public ResponseEntity accessOrder(@NonNull final String orderId) {
         Order order = TradingHandler.accessOrder(orderId);
