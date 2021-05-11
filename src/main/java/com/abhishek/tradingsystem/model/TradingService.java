@@ -6,8 +6,8 @@ import com.abhishek.tradingsystem.model.enums.Symbol;
 import com.abhishek.tradingsystem.model.order.operations.BaseOrderOperation;
 import com.abhishek.tradingsystem.model.order.operations.BuyOrders;
 import com.abhishek.tradingsystem.model.order.operations.SellOrders;
-import com.abhishek.tradingsystem.model.ordering.stratergy.DecreasingPriceStrategy;
-import com.abhishek.tradingsystem.model.ordering.stratergy.IncreasingPriceStrategy;
+import com.abhishek.tradingsystem.model.ordering.strategy.DecreasingPriceStrategy;
+import com.abhishek.tradingsystem.model.ordering.strategy.IncreasingPriceStrategy;
 import lombok.NonNull;
 
 import java.math.BigDecimal;

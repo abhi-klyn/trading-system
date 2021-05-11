@@ -4,7 +4,7 @@ import com.abhishek.tradingsystem.exceptions.InvalidUpdateException;
 import com.abhishek.tradingsystem.exceptions.OrderNotFoundException;
 import com.abhishek.tradingsystem.model.Order;
 import com.abhishek.tradingsystem.model.enums.Operation;
-import com.abhishek.tradingsystem.model.ordering.stratergy.BaseOrderingStrategy;
+import com.abhishek.tradingsystem.model.ordering.strategy.BaseOrderingStrategy;
 
 import java.util.TreeSet;
 

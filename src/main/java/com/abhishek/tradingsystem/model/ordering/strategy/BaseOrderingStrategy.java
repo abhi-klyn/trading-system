@@ -1,4 +1,4 @@
-package com.abhishek.tradingsystem.model.ordering.stratergy;
+package com.abhishek.tradingsystem.model.ordering.strategy;
 
 import com.abhishek.tradingsystem.model.Order;
 

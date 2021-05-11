@@ -1,7 +1,7 @@
 package com.abhishek.tradingsystem.model.order.operations;
 
 import com.abhishek.tradingsystem.model.Order;
-import com.abhishek.tradingsystem.model.ordering.stratergy.BaseOrderingStrategy;
+import com.abhishek.tradingsystem.model.ordering.strategy.BaseOrderingStrategy;
 
 import java.util.Collection;
 import java.util.Iterator;
