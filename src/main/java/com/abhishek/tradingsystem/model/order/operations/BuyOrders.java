@@ -10,6 +10,6 @@ public class BuyOrders extends BaseOrderOperation {
 
     public BuyOrders(final OrderingStratergy orderingStratergy) {
         super(orderingStratergy);
-        this.data = new TreeSet<>(orderingStratergy);
+        this.data = new TreeSet<>(orderingStratergy.getComparator());
     }
 }

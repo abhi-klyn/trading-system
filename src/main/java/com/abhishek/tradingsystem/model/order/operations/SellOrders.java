@@ -11,6 +11,6 @@ public class SellOrders extends BaseOrderOperation {
 
     public SellOrders(OrderingStratergy orderingStratergy) {
         super(orderingStratergy);
-        this.data = new TreeSet<>(orderingStratergy);
+        this.data = new TreeSet<>(orderingStratergy.getComparator());
     }
 }

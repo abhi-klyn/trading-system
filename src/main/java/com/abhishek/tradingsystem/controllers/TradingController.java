@@ -1,6 +1,6 @@
 package com.abhishek.tradingsystem.controllers;
 
-import com.abhishek.tradingsystem.handlers.TradingHandler;
+import com.abhishek.tradingsystem.handler.TradingHandler;
 import com.abhishek.tradingsystem.model.Order;
 import com.abhishek.tradingsystem.model.enums.Operation;
 import com.abhishek.tradingsystem.model.enums.OrderType;

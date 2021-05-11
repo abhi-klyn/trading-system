@@ -4,5 +4,14 @@ import com.abhishek.tradingsystem.model.Order;
 
 import java.util.Comparator;
 
-public abstract class OrderingStratergy implements Comparator<Order> {
+public abstract class OrderingStratergy {
+    Comparator<Order> orderComparator;
+
+    public OrderingStratergy() {
+        orderComparator = Comparator.comparing(Order::getOrderId);
+    }
+
+    public Comparator<Order> getComparator(){
+        return orderComparator;
+    }
 }
