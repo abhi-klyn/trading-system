@@ -12,23 +12,23 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class TradingHandler {
-    private static TradingService tradingService = new TradingService();
+    private static final TradingService tradingService = new TradingService();
 
     public static String addOrder(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
-                                  @NonNull Operation operation, OrderType orderType)  {
+                                  @NonNull Operation operation, OrderType orderType) {
         return tradingService.addOrder(price, symbol, quantity, datetime, operation, orderType);
     }
 
-    public static String addOrder(Order order)  {
+    public static String addOrder(Order order) {
         return tradingService.addOrder(order);
     }
 
-    public static boolean removeOrder(final String orderId)  {
+    public static boolean removeOrder(final String orderId) {
         return tradingService.removeOrder(orderId);
     }
 
     public static boolean updateOrder(String orderId, BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
-                                  Operation operation, OrderType orderType)  {
+                                      Operation operation, OrderType orderType) {
         return tradingService.updateOrder(orderId, price, symbol, quantity, datetime, operation, orderType);
     }
 

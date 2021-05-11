@@ -47,7 +47,8 @@ public class IncreasingPriceStrategyTest {
 
     @Test
     public void testSamePriceDifferentTime() {
-        Order todayOrder = Utils.generateRandomOrder(new BigDecimal(10), null, LocalDateTime.now(), null, null);
+        Order todayOrder = Utils.generateRandomOrder(new BigDecimal(10), null, LocalDateTime.now(),
+                null, null);
         Order yesterdayOrder = Utils.generateRandomOrder(new BigDecimal(10), null, LocalDateTime.now().minus(Period.ofDays(1)),
                 null, null);
         int compareResult = orderComparator.compare(todayOrder, yesterdayOrder);

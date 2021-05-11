@@ -37,29 +37,13 @@ public class TradingHandlerTest {
 
     @Test
     public void testAddOrder() {
-        Random random = new Random();
-        String orderId = TradingHandler.addOrder(
-                new BigDecimal(11.22),
-                Symbol.AAPL,
-                random.nextInt(),
-                LocalDateTime.now(),
-                Operation.BUY,
-                OrderType.MARKET
-        );
+        String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
         Assertions.assertNotNull(orderId);
     }
 
     @Test
     public void testRemoveOrder() {
-        Random random = new Random();
-        String orderId = TradingHandler.addOrder(
-                new BigDecimal(11.22),
-                Symbol.AAPL,
-                random.nextInt(),
-                LocalDateTime.now(),
-                Operation.BUY,
-                OrderType.MARKET
-        );
+        String orderId = TradingHandler.addOrder(Utils.generateRandomOrder());
         Assertions.assertNotNull(orderId);
         TradingHandler.removeOrder(orderId);
         List<Order> orderList = TradingHandler.listOrders(Operation.BUY);
