@@ -19,6 +19,10 @@ public class TradingHandler {
         return tradingService.addOrder(price, symbol, quantity, datetime, operation, orderType);
     }
 
+    public static String addOrder(Order order)  {
+        return tradingService.addOrder(order);
+    }
+
     public static boolean removeOrder(final String orderId)  {
         return tradingService.removeOrder(orderId);
     }
