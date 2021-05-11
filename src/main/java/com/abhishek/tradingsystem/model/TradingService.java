@@ -30,14 +30,16 @@ public class TradingService {
         operations.put(SellOrders.OPERATION_TYPE, new SellOrders(new IncPriceIncTime()));
     }
 
-    public boolean addOrder(final Order order) {
+    public String addOrder(final Order order) {
         orderData.put(order.getOrderId(), order);
-        return operations.get(order.getOperation()).addOrder(order);
+        operations.get(order.getOperation()).addOrder(order);
+        return order.getOrderId();
     }
 
-    public boolean addOrder(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+    public String addOrder(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
                             @NonNull Operation operation, OrderType orderType) {
-        return addOrder(new Order(price, symbol, quantity, datetime, operation, orderType));
+        Order newOrder = new Order(price, symbol, quantity, datetime, operation, orderType);
+        return addOrder(newOrder);
     }
 
     public boolean removeOrder(final Order order) {
@@ -45,15 +47,18 @@ public class TradingService {
         return operations.get(order.getOperation()).removeOrder(order);
     }
 
+    public boolean removeOrder(final String orderId) {
+        return removeOrder(orderData.get(orderId));
+    }
+
     public Order accessOrder(final String orderId) {
         return orderData.get(orderId);
     }
 
-    public List<String> listOrders(Operation operation) {
+    public List<Order> listOrders(Operation operation) {
         Iterator<Order> orderIterator = operations.get(operation).listOrders();
         Iterable<Order> iterableOrder = () -> orderIterator;
         return StreamSupport.stream(iterableOrder.spliterator(), false)
-                .map(e -> e.toString())
                 .collect(Collectors.toList());
     }
 }

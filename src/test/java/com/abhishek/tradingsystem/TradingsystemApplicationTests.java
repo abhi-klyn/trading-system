@@ -14,9 +14,9 @@ class TradingsystemApplicationTests {
     @Test
     void setUp() {
         TradingService tradingService = new TradingService();
-        Assertions.assertTrue(tradingService.addOrder(new BigDecimal(10), Symbol.AAPL, 2, LocalDateTime.now(), Operation.SELL, OrderType.MARKET));
+        Assertions.assertNotNull(tradingService.addOrder(new BigDecimal(10), Symbol.AAPL, 2, LocalDateTime.now(), Operation.SELL, OrderType.MARKET));
         System.out.println(tradingService.listOrders(Operation.SELL));
-        Assertions.assertTrue(tradingService.addOrder(new BigDecimal(20), Symbol.AAPL, 2, LocalDateTime.now(), Operation.SELL, OrderType.MARKET));
+        Assertions.assertNotNull(tradingService.addOrder(new BigDecimal(20), Symbol.AAPL, 2, LocalDateTime.now(), Operation.SELL, OrderType.MARKET));
         System.out.println(tradingService.listOrders(Operation.SELL));
     }
 

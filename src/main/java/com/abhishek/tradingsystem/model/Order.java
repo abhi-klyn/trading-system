@@ -20,7 +20,7 @@ public class Order {
     @Setter private OrderType orderType;
     @NonNull private final Operation operation;
 
-    public Order(BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
+    public Order(@NonNull BigDecimal price, Symbol symbol, int quantity, LocalDateTime datetime,
                  @NonNull Operation operation, OrderType orderType) {
         // todo: Id generation service might be needed to avoid collisions.
         this.orderId = RandomStringUtils.randomAlphanumeric(17).toUpperCase();
